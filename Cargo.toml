@@ -1,10 +1,6 @@
-[package]
-name = "Phantasy"
-version = "0.1.0"
-edition = "2024"
-
 [workspace]
-members = ["crates/*"]
+members = ["crates/*", "examples/*"]
+resolver = "2"
 
 [workspace.dependencies]
 phantasy-spotify-api = { path = "./crates/phantasy-spotify-api" }
@@ -23,11 +19,3 @@ tracing = "0.1.41"
 tracing-subscriber = { version = "0.3.19", features = ["fmt", "env-filter"] }
 dotenvy = "0.15.7"
 url = "2.5.4"
-
-[dependencies]
-phantasy-spotify-api.workspace = true
-color-eyre.workspace = true
-eyre.workspace = true
-tokio.workspace = true
-tracing-subscriber.workspace = true
-tracing.workspace = true
