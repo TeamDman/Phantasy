@@ -1,6 +1,12 @@
+use phantasy_init::init;
 use phantasy_spotify_api::auth::pkce::get_bearer_token_via_pkce;
 use phantasy_spotify_api::get_track::get_track;
 use phantasy_spotify_api::track_id::TrackId;
+
+/// Read the required environment variable or error
+fn var(name: &str) -> Result<String> {
+    std::env::var(name).map_err(|_| eyre!("Missing env var: {}", name))
+}
 
 #[tokio::main]
 async fn main() -> eyre::Result<()> {
@@ -11,22 +17,6 @@ async fn main() -> eyre::Result<()> {
 
     let x = get_track(track_id, bearer).await?;
     println!("{:#?}", x);
-
-    Ok(())
-}
-
-fn init() -> eyre::Result<()> {
-    color_eyre::install()?;
-
-    let env_filter = tracing_subscriber::EnvFilter::builder()
-        .with_default_directive(tracing::level_filters::LevelFilter::INFO.into())
-        .from_env_lossy();
-    tracing_subscriber::fmt()
-        .with_env_filter(env_filter)
-        .with_file(true)
-        .with_line_number(true)
-        .without_time()
-        .init();
 
     Ok(())
 }

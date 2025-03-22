@@ -17,11 +17,6 @@ use tracing::debug;
 use tracing::info;
 use url::Url;
 
-/// Load .env variables early
-fn init_env() {
-    dotenvy::dotenv().ok();
-}
-
 /// Read the required environment variable or error
 fn var(name: &str) -> Result<String> {
     std::env::var(name).map_err(|_| eyre!("Missing env var: {}", name))
@@ -47,7 +42,6 @@ pub async fn get_bearer_token_via_pkce() -> Result<BearerToken> {
     if let Some(x) = get_saved_token().await? {
         return Ok(x);
     }
-    init_env();
 
     let client_id = var("SPOTIFY_CLIENT_ID")?;
     let redirect_uri = var("SPOTIFY_REDIRECT_URI")?;

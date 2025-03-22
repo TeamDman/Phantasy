@@ -4,6 +4,7 @@ resolver = "2"
 
 [workspace.dependencies]
 phantasy-spotify-api = { path = "./crates/phantasy-spotify-api" }
+phantasy-init = { path = "./crates/phantasy-init" }
 base64 = "0.22.1"
 color-eyre = "0.6.3"
 eyre = "0.6.12"
@@ -18,4 +19,5 @@ tokio = { version = "1.44.1", features = ["full"] }
 tracing = "0.1.41"
 tracing-subscriber = { version = "0.3.19", features = ["fmt", "env-filter"] }
 dotenvy = "0.15.7"
+clap = { version = "4.5.32", features = ["derive"] }
 url = "2.5.4"

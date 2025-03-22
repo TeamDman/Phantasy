@@ -1,13 +1,11 @@
 [package]
-name = "get_track"
+name = "phantasy-init"
 version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-phantasy-spotify-api.workspace = true
-phantasy-init.workspace = true
 color-eyre.workspace = true
 eyre.workspace = true
-tokio.workspace = true
 tracing-subscriber.workspace = true
 tracing.workspace = true
+dotenvy.workspace = true
